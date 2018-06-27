@@ -2,15 +2,12 @@ package com.examle.ex4_vitaly.bean;
 
 import java.util.Objects;
 
-public class Bean implements Comparable<Bean> {
+public class Person implements Comparable<Person> {
 
     private String name;
     private int age;
 
-    public Bean() {
-    }
-
-    public Bean(String name, int age) {
+    public Person(String name, int age) {
         this.name = name;
         this.age = age;
     }
@@ -35,9 +32,9 @@ public class Bean implements Comparable<Bean> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Bean bean = (Bean) o;
-        return age == bean.age &&
-                Objects.equals(name, bean.name);
+        Person person = (Person) o;
+        return age == person.age &&
+                Objects.equals(name, person.name);
     }
 
     @Override
@@ -47,25 +44,14 @@ public class Bean implements Comparable<Bean> {
 
     @Override
     public String toString() {
-        return "Bean{" +
+        return "Person{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
                 '}';
     }
 
     @Override
-    public int compareTo(Bean bean) {
-        if (bean != null) {
-            if (age > bean.getAge()) {
-                return 1;
-            } else if (age == bean.getAge()) {
-                return 0;
-            } else {
-                return -1;
-            }
-
-        }
-
-        return 0;
+    public int compareTo(Person person) {
+        return name.compareTo(person.getName());
     }
 }
