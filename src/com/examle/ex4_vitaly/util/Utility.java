@@ -9,4 +9,15 @@ public class Utility {
         return random.nextInt(bound);
     }
 
+    public static void outputStringBuilder(String... strings) {
+        StringBuilder stringBuilder = new StringBuilder();
+        if(strings != null){
+            for (String string : strings) {
+                stringBuilder.append(string);
+            }
+            System.out.println(stringBuilder);
+        }
+
+    }
+
 }
