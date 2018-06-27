@@ -1,5 +1,8 @@
 package com.examle.ex4_vitaly.bean;
 
+/**
+ * Represents pet of person.
+ */
 public class Pet {
 
     private String name;

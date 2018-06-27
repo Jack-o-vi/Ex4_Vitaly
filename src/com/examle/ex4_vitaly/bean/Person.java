@@ -2,6 +2,10 @@ package com.examle.ex4_vitaly.bean;
 
 import java.util.Objects;
 
+/**
+ * This class represents person, which has name and age.
+ *
+ */
 public class Person implements Comparable<Person> {
 
     private String name;

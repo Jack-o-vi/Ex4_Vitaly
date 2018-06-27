@@ -10,7 +10,7 @@ Set (HashSet, TreeSet)
  */
 
 import com.examle.ex4_vitaly.bean.Person;
-import com.examle.ex4_vitaly.bean.PersonAgeComparator;
+import com.examle.ex4_vitaly.bean.PersonAgeAscendingComparator;
 import com.examle.ex4_vitaly.util.Utility;
 
 import java.util.HashSet;
@@ -24,7 +24,7 @@ public class SetImpl {
 
     public SetImpl() {
         hashSetPeople = new HashSet<>();
-        treeSetPeople = new TreeSet<>(new PersonAgeComparator());
+        treeSetPeople = new TreeSet<>(new PersonAgeAscendingComparator());
     }
 
     public void fillSet(int amount, Set<Person> set) {

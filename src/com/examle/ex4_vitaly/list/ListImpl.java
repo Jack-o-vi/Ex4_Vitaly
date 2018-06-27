@@ -1,7 +1,7 @@
 package com.examle.ex4_vitaly.list;
 
 import com.examle.ex4_vitaly.bean.Person;
-import com.examle.ex4_vitaly.bean.PersonAgeComparator;
+import com.examle.ex4_vitaly.bean.PersonAgeAscendingComparator;
 
 import java.util.*;
 
@@ -22,7 +22,7 @@ import java.util.*;
  * {@link Person} class implements {@link Comparable}
  * <p>
  * c. Comparator interface allows to create own Comparator by which the objects will be sorted.
- * {@link PersonAgeComparator} is an example of Comparator for {@link Person} class.
+ * {@link PersonAgeAscendingComparator} is an example of Comparator for {@link Person} class.
  *
  * @author Vitaly Zeenko
  */
@@ -127,7 +127,7 @@ public final class ListImpl {
     void comparatorSortOutput() {
         Collections.shuffle(people);
         outputBeans();
-        Collections.sort(people, new PersonAgeComparator());
+        Collections.sort(people, new PersonAgeAscendingComparator());
         outputBeans();
     }
 

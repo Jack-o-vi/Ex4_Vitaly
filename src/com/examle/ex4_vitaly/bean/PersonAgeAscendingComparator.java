@@ -2,7 +2,11 @@ package com.examle.ex4_vitaly.bean;
 
 import java.util.Comparator;
 
-public class PersonAgeComparator implements Comparator<Person> {
+/**
+ * Implements Comparator of {@link Person}.
+ * Compares by age (ascending order).
+ */
+public class PersonAgeAscendingComparator implements Comparator<Person> {
 
     @Override
     public int compare(Person person1, Person person2) {

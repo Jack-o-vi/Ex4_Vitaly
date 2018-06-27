@@ -6,7 +6,7 @@ import com.examle.ex4_vitaly.util.Utility;
 import java.util.*;
 
 /**
- * This class contains methods for benchmarking ArrayList and LinkedList.
+ * This class contains main methods for testing the performance of two lists implementations: ArrayList and LinkedList.
  */
 public class ListComparison {
 
@@ -38,9 +38,9 @@ public class ListComparison {
         }
     }
 
-    void listAddList(List<Person> list) {
-        for (int i = 0; i < ListTask.N; i++) {
-            list.add(new Person("Name #" + Utility.randInt(ListTask.N), Utility.randInt(ListTask.N)));
+    void listAddList(int amount, List<Person> list) {
+        for (int i = 0; i < amount; i++) {
+            list.add(new Person("Name #" + Utility.randInt(amount), Utility.randInt(amount)));
         }
     }
 
