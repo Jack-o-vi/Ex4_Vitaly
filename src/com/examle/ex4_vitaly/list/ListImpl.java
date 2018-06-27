@@ -5,6 +5,27 @@ import com.examle.ex4_vitaly.bean.BeanNameComparator;
 
 import java.util.*;
 
+/**
+ * <h1>In this class all tasks about List are implemented.</>
+ * a. Enumeration - reading list values.
+ * The List will be output with Enumeration {@link ListImpl#enumerationOutput()}
+ * and using List.toString {@link ListImpl#outputBeans()}.
+ * b. Iterator - reading and removing elements from the list. Two features were demonstrated in
+ * {@link ListImpl#iteratorDeleteByAge(int)} and {@link ListImpl#iteratorOutput()}.
+ * c. ListIterator - reading next and previous values, removing, updating and adding new element.
+ * The implementation is in following methods:
+ * {@link ListImpl#listIteratorDeleteByAge(int)},
+ * {@link ListImpl#listIteratorAdd(Bean)},
+ * {@link ListImpl#listIteratorOutput()},
+ * {@link ListImpl#listIteratorSetByAge(Bean, int)}.
+ *  d. Comparable allows objects to be comparable and sort them in specified order.
+ *  {@link Bean} class implements {@link Comparable}
+ *
+ *  c. Comparator interface allows to create own Comparator by which the objects will be sorted.
+ *  {@link BeanNameComparator} is an example of Comparator for {@link Bean} class.
+ *
+ * @author Vitaly Zeenko
+ */
 public final class ListImpl {
 
     private static List<Bean> beans;
@@ -15,7 +36,8 @@ public final class ListImpl {
 
     public void outputBeans() {
         System.out.println(" List: ");
-        beans.forEach(System.out::println);
+        System.out.println(beans.toString());
+        //beans.forEach(System.out::println);
     }
 
     public void enumerationOutput() {
@@ -90,40 +112,36 @@ public final class ListImpl {
         return bean;
     }
 
-    public void comparableSortOutput(){
+    public void comparableSortOutput() {
         System.out.println("Sort: ");
         Collections.sort(beans);
         outputBeans();
     }
 
-    public void comparableShuffleOutput(){
+    public void comparableShuffleOutput() {
         System.out.println("Shuffle: ");
         Collections.shuffle(beans);
         outputBeans();
     }
 
-    public void comparatorSortOutput(){
+    public void comparatorSortOutput() {
+        System.out.println("Shuffle: ");
+        Collections.shuffle(beans);
+        outputBeans();
         System.out.println("Sort using comparator: ");
         Collections.sort(beans, new BeanNameComparator());
         outputBeans();
     }
 
-    public void comparatorShuffleOutput(){
-        System.out.println("Shuffle: ");
-        //Collections.shuffle(beans, beanNameComparator);
-        //Collections.sh
-        outputBeans();
-    }
-
-
-
-    public void fillBeans(int n) {
-        //Random random = new Random();
+    public void fillBeans(int amount) {
         beans.clear();
         if (beans != null)
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < amount; i++) {
                 beans.add(new Bean("Name #" + i, i));
             }
     }
+
+
+
 
 }
