@@ -1,21 +1,17 @@
 package com.examle.ex4_vitaly.list;
 
-import com.examle.ex4_vitaly.bean.Bean;
+import com.examle.ex4_vitaly.bean.Person;
 import com.examle.ex4_vitaly.util.Utility;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.ListIterator;
+import java.util.*;
 
 /**
  * This class contains methods for benchmarking ArrayList and LinkedList.
- *
  */
 public class ListComparison {
 
-    private ArrayList<Bean> arrayList;
-    private LinkedList<Bean> linkedList;
+    private List<Person> arrayList;
+    private List<Person> linkedList;
 
     public ListComparison() {
         arrayList = new ArrayList<>();
@@ -25,196 +21,153 @@ public class ListComparison {
     /**
      * Clears lists.
      */
-    public void clear(){
+    private void clear() {
         arrayList.clear();
         linkedList.clear();
     }
 
     /**
-     * It measures time of {@link ListComparison#listAddArrayList(int)} and {@link ListComparison#listAddLinkedList(int)}
-     * @param amount is an amount of elements to add
+     * It measures time of {@link ListComparison#listAddList(int, List)} and {@link ListComparison#listAddList(int, List)}
+     *
      */
-    public void timeListAdd(int amount) {
+    void timeListAdd() {
         clear();
         System.out.println("Start adding to ArrayList");
         long startTime = System.currentTimeMillis();
-        listAddArrayList(amount);
+        listAddList(ListTask.N, arrayList);
         long finishTime = System.currentTimeMillis();
         System.out.println("Adding time: " + (finishTime - startTime) + " ms");
 
         System.out.println("Start adding to LinkedList");
         startTime = System.currentTimeMillis();
-        listAddLinkedList(amount);
+        listAddList(ListTask.N, linkedList);
         finishTime = System.currentTimeMillis();
         System.out.println("Adding time: " + (finishTime - startTime) + " ms");
     }
 
     /**
-     * It measures time of {@link ListComparison#listAddInPosArrayList(int)} and {@link ListComparison#listAddInPosLinkedList(int)}
-     * @param amount is an amount of elements to add
+     * It measures time of {@link ListComparison#listAddInPosList(int, List)} and {@link ListComparison#listAddInPosList(int, List)}
+     *
      */
-    public void timeListAddInPos(int amount) {
+    void timeListAddInPos() {
         clear();
         System.out.println("Start adding to ArrayList");
         long startTime = System.currentTimeMillis();
-        listAddInPosArrayList(amount);
+        listAddInPosList(ListTask.N, arrayList);
         long finishTime = System.currentTimeMillis();
         System.out.println("Adding time: " + (finishTime - startTime) + " ms");
 
         System.out.println("Start adding to LinkedList");
         startTime = System.currentTimeMillis();
-        listAddInPosLinkedList(amount);
+        listAddInPosList(ListTask.N, linkedList);
         finishTime = System.currentTimeMillis();
         System.out.println("Adding time: " + (finishTime - startTime) + " ms");
     }
 
     /**
-     * It measures time of {@link ListComparison#addArrayListListIterator(int)} and {@link ListComparison#addLinkedListListIterator(int)}
-     * @param amount is an amount of elements to add
+     * It measures time of {@link ListComparison#addListIterator(int, List)} and {@link ListComparison#addListIterator(int, List)}
+     *
      */
-    public void timeAddListIterator(int amount) {
+    void timeAddListIterator() {
         clear();
         System.out.println("Start adding to ArrayList");
         long startTime = System.currentTimeMillis();
-        addArrayListListIterator(amount);
+        addListIterator(ListTask.N, arrayList);
         long finishTime = System.currentTimeMillis();
         System.out.println("Adding time: " + (finishTime - startTime) + " ms");
 
         System.out.println("Start adding to LinkedList");
         startTime = System.currentTimeMillis();
-        addLinkedListListIterator(amount);
+        addListIterator(ListTask.N, linkedList);
         finishTime = System.currentTimeMillis();
         System.out.println("Adding time: " + (finishTime - startTime) + " ms");
     }
 
     /**
-     * It measures time of {@link ListComparison#getElementsArrayList()} and {@link ListComparison#getElementsLinkedList()}
+     * It measures time of {@link ListComparison#getElements(List)} and {@link ListComparison#getElements(List)}
      */
-    public void timeGetElement() {
+    void timeGetElement() {
         System.out.println("Start getting to ArrayList");
         long startTime = System.currentTimeMillis();
-        getElementsArrayList();
+        getElements(arrayList);
         long finishTime = System.currentTimeMillis();
         System.out.println("Getting time: " + (finishTime - startTime) + " ms");
 
         System.out.println("Start getting to LinkedList");
         startTime = System.currentTimeMillis();
-        getElementsLinkedList();
+        getElements(linkedList);
         finishTime = System.currentTimeMillis();
         System.out.println("Getting time: " + (finishTime - startTime) + " ms");
     }
 
     /**
-     * It measures time of {@link ListComparison#listRemoveArrayList()} and {@link ListComparison#listRemoveLinkedList()}
+     * It measures time of {@link ListComparison#listRemove(List)} and {@link ListComparison#listRemove(List)}
      */
-    public void timeRemoveFromLists() {
+    void timeRemoveFromLists() {
         System.out.println("Start removing from ArrayList");
         long startTime = System.currentTimeMillis();
-        listRemoveArrayList();
+        listRemove(arrayList);
         long finishTime = System.currentTimeMillis();
         System.out.println("Remove time: " + (finishTime - startTime) + " ms");
 
         System.out.println("Start removing from LinkedList");
         startTime = System.currentTimeMillis();
-        listRemoveLinkedList();
+        listRemove(linkedList);
         finishTime = System.currentTimeMillis();
         System.out.println("Remove time: " + (finishTime - startTime) + " ms");
     }
 
     /**
-     * It measures time of {@link ListComparison#removeLinkedListIterator()} and {@link ListComparison#removeArrayListIterator()}
+     * It measures time of {@link ListComparison#removeListIterator(List)} and {@link ListComparison#removeListIterator(List)}
      */
-    public void timeRemoveFromListsIterator() {
+    void timeRemoveFromListsIterator() {
         System.out.println("Start removing from ArrayList");
         long startTime = System.currentTimeMillis();
-        removeArrayListIterator();
+        removeListIterator(arrayList);
         long finishTime = System.currentTimeMillis();
         System.out.println("Remove time: " + (finishTime - startTime) + " ms");
 
         System.out.println("Start removing from LinkedList");
         startTime = System.currentTimeMillis();
-        removeLinkedListIterator();
+        removeListIterator(linkedList);
         finishTime = System.currentTimeMillis();
         System.out.println("Remove time: " + (finishTime - startTime) + " ms");
     }
 
-    public void listAddInPosArrayList(int amount) {
+    private void listAddInPosList(int amount, List<Person> list) {
         for (int i = 0; i < amount; i++) {
-            arrayList.add(i, new Bean("Name #" + Utility.randInt(amount), Utility.randInt(amount)));
+            list.add(i, new Person("Name #" + Utility.randInt(amount), Utility.randInt(amount)));
         }
     }
 
-    public void listAddInPosLinkedList(int amount) {
+    private void listRemove(List<Person> list) {
+        for (int i = 0; i < list.size() / 2; i++) {
+            list.remove(i);
+        }
+    }
+
+    private void listAddList(int amount, List<Person> list) {
         for (int i = 0; i < amount; i++) {
-            linkedList.add(i, new Bean("Name #" + Utility.randInt(amount), Utility.randInt(amount)));
-            //linkedList.add(new Bean("Name #" + Utility.randInt(amount), Utility.randInt(amount)));
+            list.add(new Person("Name #" + Utility.randInt(amount), Utility.randInt(amount)));
         }
     }
 
-    public void listRemoveArrayList() {
-        for (int i = 0; i < arrayList.size() / 2; i++) {
-            arrayList.remove(i);
+    private void getElements(List<Person> list) {
+        for (int i = 0; i < list.size() / 2; i++) {
+            list.get(i);
         }
     }
 
-    public void listRemoveLinkedList() {
-        for (int i = 0; i < linkedList.size() / 2; i++) {
-            linkedList.remove(i);
-        }
-    }
-
-    public void listAddArrayList(int amount) {
+    private void addListIterator(int amount, List<Person> list) {
+        ListIterator<Person> listIterator = list.listIterator();
         for (int i = 0; i < amount; i++) {
-            arrayList.add(new Bean("Name #" + Utility.randInt(amount), Utility.randInt(amount)));
+            listIterator.add(new Person("Name #" + Utility.randInt(amount), Utility.randInt(amount)));
         }
     }
 
-    public void listAddLinkedList(int amount) {
-        for (int i = 0; i < amount; i++) {
-            linkedList.add(new Bean("Name #" + Utility.randInt(amount), Utility.randInt(amount)));
-            //linkedList.add(new Bean("Name #" + Utility.randInt(amount), Utility.randInt(amount)));
-        }
-    }
-
-    public void getElementsArrayList() {
-        for (int i = 0; i < arrayList.size() / 2; i++) {
-            arrayList.get(i);
-        }
-    }
-
-    public void getElementsLinkedList() {
-        for (int i = 0; i < linkedList.size() / 2; i++) {
-            linkedList.get(i);
-        }
-    }
-
-    public void addLinkedListListIterator(int amount) {
-        ListIterator<Bean> listIterator = linkedList.listIterator();
-        for (int i = 0; i < amount; i++) {
-            listIterator.add(new Bean("Name #" + Utility.randInt(amount), Utility.randInt(amount)));
-            //linkedList.add(new Bean("Name #" + Utility.randInt(amount), Utility.randInt(amount)));
-        }
-    }
-
-    public void addArrayListListIterator(int amount) {
-        ListIterator<Bean> listIterator = arrayList.listIterator();
-        for (int i = 0; i < amount; i++) {
-            arrayList.add(new Bean("Name #" + Utility.randInt(amount), Utility.randInt(amount)));
-            //linkedList.add(new Bean("Name #" + Utility.randInt(amount), Utility.randInt(amount)));
-        }
-    }
-
-    public void removeLinkedListIterator() {
-        Iterator<Bean> iterator = linkedList.iterator();
-        while (iterator.hasNext()){
-            iterator.next();
-            iterator.remove();
-        }
-    }
-
-    public void removeArrayListIterator() {
-        Iterator<Bean> iterator = arrayList.iterator();
-        while (iterator.hasNext()){
+    private void removeListIterator(List<Person> list) {
+        Iterator<Person> iterator = list.iterator();
+        while (iterator.hasNext()) {
             iterator.next();
             iterator.remove();
         }

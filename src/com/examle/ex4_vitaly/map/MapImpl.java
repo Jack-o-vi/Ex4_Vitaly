@@ -1,7 +1,7 @@
 package com.examle.ex4_vitaly.map;
 
 
-import com.examle.ex4_vitaly.bean.Bean;
+import com.examle.ex4_vitaly.bean.Person;
 import com.examle.ex4_vitaly.bean.Pet;
 import com.examle.ex4_vitaly.util.Utility;
 
@@ -16,16 +16,25 @@ Iterator - провести модификацию HashMap с помощью Ite
  */
 public class MapImpl {
 
-    private Map<Bean, Pet> beanMap;
+    private Map<Person, Pet> beanMap;
 
     public MapImpl() {
         beanMap = new HashMap<>();
     }
 
+    public void fillMap(int amount) {
+        beanMap.clear();
+        for (int i = 0; i < amount; i++) {
+            beanMap.put(
+                    new Person("Name #" + Utility.randInt(amount), Utility.randInt(amount)),
+                    new Pet("PetName #" + Utility.randInt(amount)));
+        }
+    }
+
     public void outputKeySet() {
         StringBuilder stringBuilder = new StringBuilder();
         System.out.println("Key set: ");
-        for (Bean entity : beanMap.keySet()) {
+        for (Person entity : beanMap.keySet()) {
             stringBuilder.append(entity.toString()).append(System.lineSeparator());
         }
         System.out.println(stringBuilder.toString());
@@ -35,26 +44,25 @@ public class MapImpl {
         StringBuilder stringBuilder = new StringBuilder();
         System.out.println("Value collection: ");
         for (Pet entity : beanMap.values()) {
-            stringBuilder.append(entity.toString()).append(System.lineSeparator());
+            stringBuilder.append(entity).append(System.lineSeparator());
         }
-        System.out.println(stringBuilder.toString());
+        System.out.println(stringBuilder);
     }
 
     public void outputEntrySetMap() {
         StringBuilder stringBuilder = new StringBuilder();
         System.out.println("Entry set: ");
-        for (Map.Entry<Bean, Pet> entity : beanMap.entrySet()) {
-            stringBuilder.append(entity.getKey() + " " + entity.getValue()).append(System.lineSeparator());
+        for (Map.Entry<Person, Pet> entity : beanMap.entrySet()) {
+            stringBuilder.append(entity.getKey()).append(entity.getValue()).append(System.lineSeparator());
         }
-        System.out.println(stringBuilder.toString());
+        System.out.println(stringBuilder);
     }
 
     public int removeEntryIterator(int age) {
-        Iterator<Map.Entry<Bean, Pet>> iterator = beanMap.entrySet().iterator();
+        Iterator<Map.Entry<Person, Pet>> iterator = beanMap.entrySet().iterator();
 
         while (iterator.hasNext()) {
-            Map.Entry<Bean, Pet> entry = iterator.next();
-            if (entry != null && entry.getKey().getAge() == age)
+            if (iterator.next().getKey().getAge() == age)
                 iterator.remove();
         }
 
@@ -63,21 +71,11 @@ public class MapImpl {
 
     public void outputEntrySetIterator() {
         StringBuilder stringBuilder = new StringBuilder();
-        Iterator<Map.Entry<Bean, Pet>> iterator = beanMap.entrySet().iterator();
+        Iterator<Map.Entry<Person, Pet>> iterator = beanMap.entrySet().iterator();
         while (iterator.hasNext()) {
-            Map.Entry<Bean, Pet> entry = iterator.next();
-            stringBuilder.append(entry.getKey() + "  " + entry.getValue()).append(System.lineSeparator());
+            Map.Entry<Person, Pet> entry = iterator.next();
+            stringBuilder.append(entry.getKey()).append(entry.getValue()).append(System.lineSeparator());
         }
         System.out.println(stringBuilder.toString());
-    }
-
-    public void fillMap(int amount) {
-        beanMap.clear();
-        if (beanMap != null)
-            for (int i = 0; i < amount; i++) {
-                beanMap.put(
-                        new Bean("Name #" + Utility.randInt(amount), Utility.randInt(amount)),
-                        new Pet("PetName #" + Utility.randInt(amount)));
-            }
     }
 }

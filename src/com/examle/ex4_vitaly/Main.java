@@ -7,10 +7,10 @@ import com.examle.ex4_vitaly.set.SetTask;
 public class Main {
 
     public static void main(String[] args) {
-        testTime();
-//        listTask();
-//        setTask();
-//        mapTask();
+//        testTime();
+        listTask();
+        setTask();
+        mapTask();
     }
 
     private static void listTask() {

@@ -5,21 +5,23 @@ public class SetTask {
 
     private static SetTask instance;
 
+    private SetTask(){}
+
     public static SetTask getInstance() {
         if (instance == null)
             instance = new SetTask();
         return instance;
     }
 
-    public void hashSet(){
+    public void hashSet() {
         SetImpl setImpl = new SetImpl();
-        setImpl.fillHashSet(N);
+        setImpl.fillSet(N, setImpl.getHashSetPeople());
         setImpl.outputSet();
     }
 
-    public void treeSet(){
+    public void treeSet() {
         SetImpl setImpl = new SetImpl();
-        setImpl.fillTreeSet(N);
+        setImpl.fillSet(N, setImpl.getTreeSetPeople());
         setImpl.outputTreeSet();
     }
 

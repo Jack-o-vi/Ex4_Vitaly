@@ -9,8 +9,8 @@ Set (HashSet, TreeSet)
 
  */
 
-import com.examle.ex4_vitaly.bean.Bean;
-import com.examle.ex4_vitaly.bean.BeanNameComparator;
+import com.examle.ex4_vitaly.bean.Person;
+import com.examle.ex4_vitaly.bean.PersonAgeComparator;
 import com.examle.ex4_vitaly.util.Utility;
 
 import java.util.HashSet;
@@ -19,48 +19,44 @@ import java.util.TreeSet;
 
 public class SetImpl {
 
-    private Set<Bean> hashSetBeans;
-    private Set<Bean> treeSetBeans;
+    private Set<Person> hashSetPeople;
+    private Set<Person> treeSetPeople;
 
     public SetImpl() {
-        hashSetBeans = new HashSet<>();
-        treeSetBeans = new TreeSet<>(new BeanNameComparator());
+        hashSetPeople = new HashSet<>();
+        treeSetPeople = new TreeSet<>(new PersonAgeComparator());
+    }
+
+    public void fillSet(int amount, Set<Person> set) {
+        set.clear();
+        for (int i = amount; i > 0; i--) {
+            set.add(new Person("Name #" + Utility.randInt(amount), Utility.randInt(amount)));
+        }
     }
 
     public void outputSet() {
-        for (Bean bean : hashSetBeans) {
-            System.out.println(bean.toString());
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Person person : hashSetPeople) {
+            stringBuilder.append(person);
         }
-        System.out.println("Size(): " + hashSetBeans.size());
+        System.out.println(stringBuilder);
     }
 
     public void outputTreeSet() {
-        for (Bean bean : treeSetBeans) {
-            System.out.println(bean.toString());
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Person person : treeSetPeople) {
+            stringBuilder.append(person);
         }
-        System.out.println("Size(): " + treeSetBeans.size());
+        System.out.println(stringBuilder);
     }
 
-    public void fillTreeSet(int amount) {
-        treeSetBeans.clear();
-        if (treeSetBeans != null) {
-            for (int i = amount; i > 0; i--) {
-                if (i % 2 == 0)
-                    treeSetBeans.add(new Bean("Name #" + Utility.randInt(amount), Utility.randInt(amount)));
-            }
-        }
+    public Set<Person> getHashSetPeople() {
+        return hashSetPeople;
     }
 
-    public void fillHashSet(int amount) {
-        hashSetBeans.clear();
-        if (hashSetBeans != null) {
-            for (int i = amount; i > 0; i--) {
-                if (i % 2 == 0)
-                    hashSetBeans.add(new Bean("Name #" + Utility.randInt(amount), Utility.randInt(amount)));
-            }
-        }
 
+    public Set<Person> getTreeSetPeople() {
+        return treeSetPeople;
     }
-
 
 }

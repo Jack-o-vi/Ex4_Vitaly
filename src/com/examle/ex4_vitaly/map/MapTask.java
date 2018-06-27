@@ -7,6 +7,9 @@ public class MapTask {
     private static final int N = 5;
     private static MapTask instance;
 
+    private MapTask() {
+    }
+
     public static MapTask getInstance() {
 
         if (instance == null)
@@ -27,7 +30,7 @@ public class MapTask {
         MapImpl map = new MapImpl();
         map.fillMap(N);
         map.outputEntrySetMap();
-        int ageOfBean =  map.removeEntryIterator(Utility.randInt(N));
+        int ageOfBean = map.removeEntryIterator(Utility.randInt(N));
         System.out.println("Delete bean with age: " + ageOfBean);
         map.outputEntrySetIterator();
     }

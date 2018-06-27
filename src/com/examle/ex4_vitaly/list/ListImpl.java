@@ -1,7 +1,7 @@
 package com.examle.ex4_vitaly.list;
 
-import com.examle.ex4_vitaly.bean.Bean;
-import com.examle.ex4_vitaly.bean.BeanNameComparator;
+import com.examle.ex4_vitaly.bean.Person;
+import com.examle.ex4_vitaly.bean.PersonAgeComparator;
 
 import java.util.*;
 
@@ -15,69 +15,74 @@ import java.util.*;
  * c. ListIterator - reading next and previous values, removing, updating and adding new element.
  * The implementation is in following methods:
  * {@link ListImpl#listIteratorDeleteByAge(int)},
- * {@link ListImpl#listIteratorAdd(Bean)},
+ * {@link ListImpl#listIteratorAdd(Person)},
  * {@link ListImpl#listIteratorOutput()},
- * {@link ListImpl#listIteratorSetByAge(Bean, int)}.
- *  d. Comparable allows objects to be comparable and sort them in specified order.
- *  {@link Bean} class implements {@link Comparable}
- *
- *  c. Comparator interface allows to create own Comparator by which the objects will be sorted.
- *  {@link BeanNameComparator} is an example of Comparator for {@link Bean} class.
+ * {@link ListImpl#listIteratorSetByAge(Person, int)}.
+ * d. Comparable allows objects to be comparable and sort them in specified order.
+ * {@link Person} class implements {@link Comparable}
+ * <p>
+ * c. Comparator interface allows to create own Comparator by which the objects will be sorted.
+ * {@link PersonAgeComparator} is an example of Comparator for {@link Person} class.
  *
  * @author Vitaly Zeenko
  */
 public final class ListImpl {
 
-    private static List<Bean> beans;
+    private static List<Person> people;
 
     public ListImpl() {
-        beans = new ArrayList<>();
+        people = new ArrayList<>();
     }
 
-    public void outputBeans() {
-        System.out.println(" List: ");
-        System.out.println(beans.toString());
-        //beans.forEach(System.out::println);
+    void fillBeans() {
+        people.clear();
+        for (int i = 0; i < ListTask.N; i++) {
+            people.add(new Person("Name #" + i, i));
+        }
     }
 
-    public void enumerationOutput() {
-        Enumeration<Bean> enumeration = Collections.enumeration(beans);
-        StringBuilder stringBuilder = new StringBuilder();
+    void outputBeans() {
+        StringBuilder stringBuilder = new StringBuilder(" List: ");
+        stringBuilder.append(people);
+        System.out.println(people);
+    }
+
+    void enumerationOutput() {
+        Enumeration<Person> enumeration = Collections.enumeration(people);
+        StringBuilder stringBuilder = new StringBuilder(" Enumeration:\n");
         while (enumeration.hasMoreElements()) {
             stringBuilder.append(enumeration.nextElement()).append(System.lineSeparator());
         }
-        System.out.println(" Enumeration:\n" + stringBuilder.toString());
+        System.out.println(stringBuilder);
     }
 
-    public void iteratorOutput() {
-        Iterator<Bean> beanIterator = beans.iterator();
-        StringBuilder stringBuilder = new StringBuilder();
-        Bean bean;
+    void iteratorOutput() {
+        Iterator<Person> beanIterator = people.iterator();
+        StringBuilder stringBuilder = new StringBuilder(" Iterator:\n");
+        Person person;
         while (beanIterator.hasNext()) {
-            bean = beanIterator.next();
-            if (bean != null)
-                stringBuilder.append(bean.toString()).append(System.lineSeparator());
+            person = beanIterator.next();
+            if (person != null)
+                stringBuilder.append(person.toString()).append(System.lineSeparator());
         }
 
-        System.out.println(" Iterator:\n" + stringBuilder);
+        System.out.println(stringBuilder);
     }
 
-    public void listIteratorOutput() {
-        ListIterator<Bean> beanListIterator = beans.listIterator();
-        StringBuilder stringBuilder = new StringBuilder();
-        Bean bean;
+    void listIteratorOutput() {
+        ListIterator<Person> beanListIterator = people.listIterator();
+        StringBuilder stringBuilder = new StringBuilder(" ListIterator:\n");
+        Person person;
         while (beanListIterator.hasNext()) {
-            bean = beanListIterator.next();
-            if (bean != null)
-                stringBuilder.append(bean.toString()).append(System.lineSeparator());
+            person = beanListIterator.next();
+            if (person != null)
+                stringBuilder.append(person.toString()).append(System.lineSeparator());
         }
-        System.out.println(" ListIterator:\n" + stringBuilder);
+        System.out.println(stringBuilder);
     }
 
-    public int iteratorDeleteByAge(int age) {
-        Iterator<Bean> iterator = beans.iterator();
-        // can be replaced by
-        // beans.removeIf(bean -> bean.getAge() == age);
+    int iteratorDeleteByAge(int age) {
+        Iterator<Person> iterator = people.iterator();
         while (iterator.hasNext()) {
             if (iterator.next().getAge() == age) {
                 iterator.remove();
@@ -86,62 +91,44 @@ public final class ListImpl {
         return age;
     }
 
-    public int listIteratorDeleteByAge(int age) {
-        ListIterator<Bean> beanListIterator = beans.listIterator();
+    void listIteratorDeleteByAge(int age) {
+        ListIterator<Person> beanListIterator = people.listIterator();
         while (beanListIterator.hasNext()) {
             if (beanListIterator.next().getAge() == age) {
                 beanListIterator.remove();
             }
         }
-        return age;
     }
 
-    public int listIteratorSetByAge(Bean bean, int age) {
-        ListIterator<Bean> beanListIterator = beans.listIterator();
+    void listIteratorSetByAge(Person person, int age) {
+        ListIterator<Person> beanListIterator = people.listIterator();
         while (beanListIterator.hasNext()) {
             if (beanListIterator.next().getAge() == age) {
-                beanListIterator.set(bean);
+                beanListIterator.set(person);
             }
         }
-        return age;
     }
 
-    public Bean listIteratorAdd(Bean bean) {
-        ListIterator<Bean> beanListIterator = beans.listIterator();
-        beanListIterator.add(bean);
-        return bean;
+    void listIteratorAdd(Person person) {
+        ListIterator<Person> beanListIterator = people.listIterator();
+        beanListIterator.add(person);
     }
 
-    public void comparableSortOutput() {
-        System.out.println("Sort: ");
-        Collections.sort(beans);
+    void comparableSortOutput() {
+        Collections.sort(people);
         outputBeans();
     }
 
-    public void comparableShuffleOutput() {
-        System.out.println("Shuffle: ");
-        Collections.shuffle(beans);
+    void comparableShuffleOutput() {
+        Collections.shuffle(people);
         outputBeans();
     }
 
-    public void comparatorSortOutput() {
-        System.out.println("Shuffle: ");
-        Collections.shuffle(beans);
+    void comparatorSortOutput() {
+        Collections.shuffle(people);
         outputBeans();
-        System.out.println("Sort using comparator: ");
-        Collections.sort(beans, new BeanNameComparator());
+        Collections.sort(people, new PersonAgeComparator());
         outputBeans();
     }
-
-    public void fillBeans(int amount) {
-        beans.clear();
-        if (beans != null)
-            for (int i = 0; i < amount; i++) {
-                beans.add(new Bean("Name #" + i, i));
-            }
-    }
-
-
-
 
 }

@@ -1,12 +1,15 @@
 package com.examle.ex4_vitaly.list;
 
-import com.examle.ex4_vitaly.bean.Bean;
+import com.examle.ex4_vitaly.bean.Person;
 import com.examle.ex4_vitaly.util.Utility;
 
 public class ListTask {
 
-    private static final int N = 500_00;
+    public static final int N = 10;
     private static ListTask instance;
+
+    private ListTask() {
+    }
 
     public static ListTask getInstance() {
         if (instance == null)
@@ -16,16 +19,16 @@ public class ListTask {
 
     public void enumeration() {
         ListImpl listImpl = new ListImpl();
-        listImpl.fillBeans(N);
+        listImpl.fillBeans();
         listImpl.enumerationOutput();
         listImpl.outputBeans();
     }
 
     public void iterator() {
         ListImpl listImpl = new ListImpl();
-        listImpl.fillBeans(N);
+        listImpl.fillBeans();
         int ageToDelete = 3;
-        System.out.println("Delete Bean with age: " + listImpl.iteratorDeleteByAge(ageToDelete));
+        System.out.println("Delete Person with age: " + listImpl.iteratorDeleteByAge(ageToDelete));
         listImpl.iteratorOutput();
         listImpl.outputBeans();
 
@@ -34,35 +37,39 @@ public class ListTask {
     public void listIterator() {
         ListImpl listImpl = new ListImpl();
         int ageToDelete = 3;
-        listImpl.fillBeans(N);
-        System.out.println("Delete Bean with age: " + listImpl.listIteratorDeleteByAge(ageToDelete));
+        listImpl.fillBeans();
+        System.out.println("Delete Person with age: " + ageToDelete);
+        listImpl.listIteratorDeleteByAge(ageToDelete);
 
         int ageToSet = 4;
         int newAge = 18;
-        String newName = "Name #";
+        StringBuilder newName = new StringBuilder("Name #").append(newAge);
 
-        Bean bean = new Bean(newName + newAge, newAge);
+        Person person = new Person(newName.toString(), newAge);
 
-        System.out.println("Set Bean with age: " + listImpl.listIteratorSetByAge(bean, ageToSet));
+        System.out.println("Set Person with age: " + ageToSet);
+        listImpl.listIteratorSetByAge(person, ageToSet);
 
-        bean = new Bean(newName + Utility.randInt(N), Utility.randInt(N));
-        System.out.println("Add Bean: " + listImpl.listIteratorAdd(bean));
+        newName.append(Utility.randInt(N));
+        person = new Person(newName.toString(), Utility.randInt(N));
+        System.out.println("Add Person: " + person);
+        listImpl.listIteratorAdd(person);
         listImpl.listIteratorOutput();
         listImpl.outputBeans();
     }
 
     public void comparable() {
         ListImpl listImpl = new ListImpl();
-        listImpl.fillBeans(N);
+        listImpl.fillBeans();
 
-        listImpl.comparableSortOutput();
         listImpl.comparableShuffleOutput();
+        listImpl.comparableSortOutput();
 
     }
 
     public void comparator() {
         ListImpl listImpl = new ListImpl();
-        listImpl.fillBeans(N);
+        listImpl.fillBeans();
         listImpl.comparatorSortOutput();
     }
 
@@ -70,11 +77,11 @@ public class ListTask {
         ListComparison listComparison = new ListComparison();
 
         System.out.println("=========== List.add(Obj)  ===========");
-        listComparison.timeListAdd(N);
+        listComparison.timeListAdd();
         System.out.println("=========== List.add(pos,Obj)  ===========");
-        listComparison.timeListAddInPos(N);
+        listComparison.timeListAddInPos();
         System.out.println("=========== ListIterator.add(Obj)  ===========");
-        listComparison.timeAddListIterator(N);
+        listComparison.timeAddListIterator();
         System.out.println("=========== List.get()  ===========");
         listComparison.timeGetElement();
         System.out.println("=========== List.remove()  ===========");
