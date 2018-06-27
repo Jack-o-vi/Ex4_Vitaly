@@ -35,12 +35,12 @@ public class ListTimeComparison {
         ListComparison listComparison = new ListComparison();
         listComparison.clear();
         startTime();
-        listComparison.listAddList(ListTask.N, listComparison.getArrayList());
+        listComparison.listAddList(listComparison.getArrayList());
         finishTime();
         outputStringBuilder("ArrayList time: ", Long.toString(diff()), " ms");
 
         startTime();
-        listComparison.listAddList(ListTask.N, listComparison.getLinkedList());
+        listComparison.listAddList(listComparison.getLinkedList());
         finishTime();
         outputStringBuilder("LinkedList time: ", Long.toString(diff()), " ms");
 

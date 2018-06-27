@@ -74,20 +74,20 @@ public class ListTask {
     }
 
     public void testLists() {
-        ListComparison listComparison = new ListComparison();
+        ListTimeComparison listTimeComparison = ListTimeComparison.getInstance();
 
         System.out.println("=========== List.add(Obj)  ===========");
-        listComparison.timeListAdd();
+        listTimeComparison.timeListAdd();
         System.out.println("=========== List.add(pos,Obj)  ===========");
-        listComparison.timeListAddInPos();
+        listTimeComparison.timeListAddInPos();
         System.out.println("=========== ListIterator.add(Obj)  ===========");
-        listComparison.timeAddListIterator();
+        listTimeComparison.timeAddListIterator();
         System.out.println("=========== List.get()  ===========");
-        listComparison.timeGetElement();
+        listTimeComparison.timeGetElement();
         System.out.println("=========== List.remove()  ===========");
-        listComparison.timeRemoveFromLists();
+        listTimeComparison.timeRemoveFromLists();
         System.out.println("=========== Iterator.remove()  ===========");
-        listComparison.timeRemoveFromListsIterator();
+        listTimeComparison.timeRemoveFromListsIterator();
 
     }
 
