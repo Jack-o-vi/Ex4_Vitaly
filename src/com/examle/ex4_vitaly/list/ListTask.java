@@ -5,8 +5,14 @@ import com.examle.ex4_vitaly.util.Utility;
 
 public class ListTask {
 
-    private static final int N = 5;
+    private static final int N = 500_00;
     private static ListTask instance;
+
+    public static ListTask getInstance() {
+        if (instance == null)
+            instance = new ListTask();
+        return instance;
+    }
 
     public void enumeration() {
         ListImpl listImpl = new ListImpl();
@@ -45,7 +51,7 @@ public class ListTask {
         listImpl.outputBeans();
     }
 
-    public void comparable(){
+    public void comparable() {
         ListImpl listImpl = new ListImpl();
         listImpl.fillBeans(N);
 
@@ -54,16 +60,28 @@ public class ListTask {
 
     }
 
-    public void comparator(){
+    public void comparator() {
         ListImpl listImpl = new ListImpl();
         listImpl.fillBeans(N);
         listImpl.comparatorSortOutput();
     }
 
-    public static ListTask getIstance() {
-        if (instance == null)
-            instance = new ListTask();
-        return instance;
+    public void testLists() {
+        ListComparison listComparison = new ListComparison();
+
+        System.out.println("=========== List.add(Obj)  ===========");
+        listComparison.timeListAdd(N);
+        System.out.println("=========== List.add(pos,Obj)  ===========");
+        listComparison.timeListAddInPos(N);
+        System.out.println("=========== ListIterator.add(Obj)  ===========");
+        listComparison.timeAddListIterator(N);
+        System.out.println("=========== List.get()  ===========");
+        listComparison.timeGetElement();
+        System.out.println("=========== List.remove()  ===========");
+        listComparison.timeRemoveFromLists();
+        System.out.println("=========== Iterator.remove()  ===========");
+        listComparison.timeRemoveFromListsIterator();
+
     }
 
 }
