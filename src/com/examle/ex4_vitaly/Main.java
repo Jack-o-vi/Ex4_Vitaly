@@ -1,21 +1,20 @@
 package com.examle.ex4_vitaly;
 
 import com.examle.ex4_vitaly.list.ListTask;
+import com.examle.ex4_vitaly.map.MapTask;
 import com.examle.ex4_vitaly.set.SetTask;
 
 public class Main {
 
-    private static final int N = 50;
-
     public static void main(String[] args) {
-
-        //listTask();
-        setTask();
-
+        testTime();
+//        listTask();
+//        setTask();
+//        mapTask();
     }
 
     private static void listTask() {
-        ListTask listTask = ListTask.getIstance();
+        ListTask listTask = ListTask.getInstance();
 
         System.out.println("========== Enumeration ========");
         listTask.enumeration();
@@ -41,6 +40,20 @@ public class Main {
 
         System.out.println("========== TreeSet ========");
         setTask.treeSet();
+    }
+
+    private static void mapTask() {
+        MapTask mapTask = MapTask.getInstance();
+        System.out.println("========== HashMap ========");
+        mapTask.map();
+        System.out.println("========== HashMap Iterator ========");
+        mapTask.mapIterator();
+    }
+
+    private static void testTime() {
+        System.out.println("========== Test Time ========");
+        ListTask listTask = ListTask.getInstance();
+        listTask.testLists();
     }
 
 }
