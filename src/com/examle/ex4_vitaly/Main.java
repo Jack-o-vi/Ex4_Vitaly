@@ -1,28 +1,16 @@
 package com.examle.ex4_vitaly;
 
-import com.examle.ex4_vitaly.bean.Person;
-import com.examle.ex4_vitaly.bean.PersonAgeAscendingComparator;
-import com.examle.ex4_vitaly.bean.PersonAgeDescendingComparator;
-import com.examle.ex4_vitaly.bean.PersonNameComparator;
 import com.examle.ex4_vitaly.list.ListTask;
 import com.examle.ex4_vitaly.map.MapTask;
 import com.examle.ex4_vitaly.set.SetTask;
-import com.examle.ex4_vitaly.util.Utility;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-//        testTime();
-
-
-        //System.out.println(list.toString());
-//        listTask();
-//        setTask();
-//        mapTask();
+        testTime();
+        listTask();
+        setTask();
+        mapTask();
     }
 
     private static void listTask() {

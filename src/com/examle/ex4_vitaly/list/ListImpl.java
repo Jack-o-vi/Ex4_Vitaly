@@ -43,10 +43,22 @@ public final class ListImpl {
         }
     }
 
-    void outputBeans() {
-        StringBuilder stringBuilder = new StringBuilder(" List: ");
-        stringBuilder.append(people);
-        System.out.println(people);
+    void comparatorPersonNameOutput() {
+        List<Person> list = new ArrayList<>();
+        String[] names = {"Zed", "Yuki", "Bob", "David", "Eva", "Huey", "Duke"};
+        int bound = 50;
+
+        for (String name : names) {
+            list.add(new Person(name, Utility.randInt(bound)));
+        }
+
+        System.out.println(list.toString());
+
+        Collections.sort(list, new PersonNameComparator());
+        StringBuilder stringBuilder = new StringBuilder("Sorted: ");
+        for (Person person : list) {
+            stringBuilder.append(person).append(System.lineSeparator());
+        }
     }
 
     void enumerationOutput() {
@@ -133,24 +145,10 @@ public final class ListImpl {
         outputBeans();
     }
 
-
-    void comparatorPersonNameOutput() {
-        List<Person> list = new ArrayList<>();
-        String[] names = {"Zed", "Yuki", "Bob", "David", "Eva", "Huey", "Duke"};
-        int bound = 50;
-
-        for (String name : names) {
-            list.add(new Person(name, Utility.randInt(bound)));
-        }
-
-        System.out.println(list.toString());
-
-        Collections.sort(list, new PersonNameComparator());
-        StringBuilder stringBuilder = new StringBuilder("Sorted: ");
-        for (Person person : list) {
-            stringBuilder.append(person).append(System.lineSeparator());
-        }
+    void outputBeans() {
+        StringBuilder stringBuilder = new StringBuilder(" List: ");
+        stringBuilder.append(people);
+        System.out.println(people);
     }
-
 
 }
