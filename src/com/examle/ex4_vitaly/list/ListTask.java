@@ -91,4 +91,10 @@ public class ListTask {
 
     }
 
+    public void comparatorPersonName() {
+
+        ListImpl listImpl = new ListImpl();
+        listImpl.comparatorPersonNameOutput();
+    }
+
 }

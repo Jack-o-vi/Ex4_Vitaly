@@ -2,6 +2,8 @@ package com.examle.ex4_vitaly.list;
 
 import com.examle.ex4_vitaly.bean.Person;
 import com.examle.ex4_vitaly.bean.PersonAgeAscendingComparator;
+import com.examle.ex4_vitaly.bean.PersonNameComparator;
+import com.examle.ex4_vitaly.util.Utility;
 
 import java.util.*;
 
@@ -130,5 +132,25 @@ public final class ListImpl {
         Collections.sort(people, new PersonAgeAscendingComparator());
         outputBeans();
     }
+
+
+    void comparatorPersonNameOutput() {
+        List<Person> list = new ArrayList<>();
+        String[] names = {"Zed", "Yuki", "Bob", "David", "Eva", "Huey", "Duke"};
+        int bound = 50;
+
+        for (String name : names) {
+            list.add(new Person(name, Utility.randInt(bound)));
+        }
+
+        System.out.println(list.toString());
+
+        Collections.sort(list, new PersonNameComparator());
+        StringBuilder stringBuilder = new StringBuilder("Sorted: ");
+        for (Person person : list) {
+            stringBuilder.append(person).append(System.lineSeparator());
+        }
+    }
+
 
 }

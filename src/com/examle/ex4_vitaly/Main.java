@@ -17,21 +17,7 @@ public class Main {
 
     public static void main(String[] args) {
 //        testTime();
-        List<Person> list = new ArrayList<>();
-        String[] names = {"Zed", "Yuki","Bob", "David", "Eva", "Huey", "Duke"};
-        int i = 50;
-        for (String name : names) {
-            list.add(new Person(name, Utility.randInt(i)));
-        }
 
-        for (Person person : list) {
-            System.out.println(person);
-        }
-        System.out.println("Sorted: ");
-        Collections.sort(list, new PersonNameComparator());
-        for (Person person : list) {
-            System.out.println(person);
-        }
 
         //System.out.println(list.toString());
 //        listTask();
@@ -56,6 +42,9 @@ public class Main {
 
         System.out.println("========== Comparator ========");
         listTask.comparator();
+
+        System.out.println("========== Comparator PersonName ========");
+        listTask.comparatorPersonName();
     }
 
     private static void setTask() {
